@@ -32,6 +32,8 @@ const productSchema = mongoose.Schema({
         minLength: [1],
         trim: true
     },
+
+    // soft delete
     isDeleted: {
         type: Boolean,
         default: false,
@@ -40,7 +42,8 @@ const productSchema = mongoose.Schema({
 
 },
     {
-        ver
+        versionKey: false, // hide __v   
+        timestamps: true // record updatedAt and createdAt
     })
 const product = mongoose.model(`Product`, productSchema)
 module.exports = product
