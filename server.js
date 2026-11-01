@@ -1,5 +1,5 @@
 
-const app = require('./index.js')
+const app = require('./app.js')
 const connectDp =require('./config/connectDb.js')
 
 const port = process.env.PORT
