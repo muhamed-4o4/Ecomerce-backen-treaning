@@ -3,7 +3,7 @@ const productSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
-        unique: true,
+        unique: false,
         minLength: [3, "name must be at least 3 character"],
         maxLength: [15, "max char is 15 "],
         trim: true
