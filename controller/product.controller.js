@@ -55,6 +55,41 @@ const addProduct = async (req, res, next) => {
 }
 // update product
 
+const updateProduct = async (req, res, next) => {
+    const product = await Product.findOneAndUpdate(
+        { _id: req.params.id, isDeleted: false }, //condition find product
+        { ...req.body, updatedAt: new Date() }, // what data do I wont to edit
+        { new: true, runValidator: true })  // return update product
+    if (!product) {
+        res.status(404).json({
+            success: false,
+            message: "product not found  and not updated"
+        })
+    }
+    res.status(200).json({ success: true, message: product })
+}
+// delate product
+const deleteProduct = async (req, res, next) => {
+    const product = await Product.findOneAndUpdate(
+        { _id: req.params.id, isDeleted: false }, // find product
+        
+        // I am changing the value of 'isDeleted' here to implement a soft delete.
+        { isDeleted: true })
+
+    if (!product) {
+        return res.status(404).json({
+            success: false,
+            message: "Product not found or already deleted"
+        });
+    }
+
+    res.status(200).json({
+        success: true,
+        message: "Product deleted successfully",
+        data: product
+    });
+};
+
 
 
 
@@ -63,5 +98,7 @@ module.exports = {
     getAllProduct,
     getOneProduct,
     deletedProductByAdmin,
-    addProduct
+    addProduct,
+    updateProduct,
+    deleteProduct
 }

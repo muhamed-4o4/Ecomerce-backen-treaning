@@ -6,13 +6,18 @@ const {
     getAllProduct,
     getOneProduct,
     deletedProductByAdmin,
-    addProduct
+    addProduct,
+    updateProduct,
+    deleteProduct
 } = require('../controller/product.controller')
 
 router.get('/', getAllProduct)
 router.get('/admin', deletedProductByAdmin)
 router.get('/:id', getOneProduct)
 router.post('/', addProduct)
+router.patch('/:id', updateProduct)
+router.delete('/:id',deleteProduct)
+
 
 
 module.exports = router
