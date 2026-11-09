@@ -44,6 +44,7 @@ const deletedProductByAdmin = async (req, res, next) => {
         data: product
     })
 }
+// add product
 
 const addProduct = async (req, res, next) => {
     const product = await Product.create(req.body)
@@ -72,7 +73,7 @@ const updateProduct = async (req, res, next) => {
 const deleteProduct = async (req, res, next) => {
     const product = await Product.findOneAndUpdate(
         { _id: req.params.id, isDeleted: false }, // find product
-        
+            
         // I am changing the value of 'isDeleted' here to implement a soft delete.
         { isDeleted: true })
 
