@@ -23,7 +23,7 @@ const getAllProduct = catchAsync(async (req, res, next) => {
 // get one product
 
 const getOneProduct = catchAsync(async (req, res, next) => {
-    const products = await Product.findOne(
+    const product = await Product.findOne(  // findOne return null
         { _id: req.params.id, isDeleted: false })
     if (!products) {
         return res.status(404).json({
@@ -33,7 +33,7 @@ const getOneProduct = catchAsync(async (req, res, next) => {
     }
     res.status(200).json({
         success: true,
-        message: products
+        data: product
     })
 })
 
