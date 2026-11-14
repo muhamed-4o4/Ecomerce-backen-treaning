@@ -38,8 +38,8 @@ const getOneProduct = catchAsync(async (req, res, next) => {
 })
 
 // check product deleted by admin
-const deletedProductByAdmin = catchAsync(async (req, res, next) => {
-    const product = await Product.findOne(
+const deletedProductsByAdmin = catchAsync(async (req, res, next) => {
+    const product = await Product.find(
         { isDeleted: true }).
         select("+isDeleted") // sho product is deleted true by select
     res.status(200).json({
@@ -101,7 +101,7 @@ const deleteProduct = catchAsync(async (req, res, next) => {
 module.exports = {
     getAllProduct,
     getOneProduct,
-    deletedProductByAdmin,
+    deletedProductsByAdmin,
     addProduct,
     updateProduct,
     deleteProduct
