@@ -5,17 +5,21 @@ const router = express.Router()
 const {
     getAllProduct,
     getOneProduct,
-    deletedProductByAdmin,
+    deletedProductsByAdmin,
     addProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    restoreProduct,
+    getDeletedProduct
 } = require('../controller/product.controller')
 
 router.get('/', getAllProduct)
-router.get('/admin', deletedProductByAdmin)
-router.get('/:id', getOneProduct)
+router.get('/admin', deletedProductsByAdmin)
+router.get('/deleted',getDeletedProduct)
 router.post('/', addProduct)
+router.get('/:id', getOneProduct)
 router.patch('/:id', updateProduct)
+router.patch('/:id/restore',restoreProduct)
 router.delete('/:id',deleteProduct)
 
 
